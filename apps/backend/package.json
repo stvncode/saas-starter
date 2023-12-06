@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --hot src/index.ts",
+    "migrate": "npx prisma migrate dev",
+    "studio": "npx prisma studio",
+    "generate": "npx prisma generate",
+    "pull": "npx prisma db pull",
+    "push": "npx prisma db push"
+  },
+  "dependencies": {
+    "@elysiajs/cookie": "^0.7.0",
+    "@elysiajs/cors": "^0.7.2",
+    "@elysiajs/jwt": "^0.7.0",
+    "@elysiajs/swagger": "^0.7.4",
+    "@prisma/client": "^5.2.0",
+    "elysia": "latest",
+    "env-var": "^7.4.1"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}

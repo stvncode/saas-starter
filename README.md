@@ -1,4 +1,4 @@
-# 🚀 Project Name
+# 🚀 Saas starter
 
 ## 📋 Introduction
 
@@ -12,7 +12,7 @@ This project is a SaaS starter built with Bun, Elysia for the server, Prisma for
 
 ### ⚙️ Configuration
 
-1. Navigate to the `apps/server` folder.
+1. Navigate to the `apps/backend` folder.
 2. Create a `.env` file and add the following line:
 
 ```
