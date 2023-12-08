@@ -6,6 +6,7 @@ import {
     Box,
     Center,
     Code,
+    Flex,
     Group,
     Text,
     TextInput,
@@ -15,9 +16,12 @@ import {
 } from '@mantine/core'
 import { spotlight } from '@mantine/spotlight'
 import { IconBulb, IconCheckbox, IconChevronLeft, IconChevronRight, IconPlus, IconSearch, IconUser } from '@tabler/icons-react'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import { ThemeToggle } from '../ThemeToggle'
 import classes from './Navbar.module.css'
+
+
+const ThemeToggle = dynamic(() => import('../ThemeToggle').then(module => ({ default: module.ThemeToggle })), { ssr: false })
 
 const links = [
     { icon: IconBulb, label: 'Activity', notifications: 3 },
@@ -94,7 +98,7 @@ export function Navbar() {
                 <div className={classes.section} style={{ flex: 1 }}>
                     <Group className={classes.collectionsHeader} justify="space-between">
                         {!collapsed && <Text size="xs" fw={500} c="dimmed">
-                            Collections
+                            Articles
                         </Text>}
                         <Tooltip label="Create article" withArrow position="right">
                             <ActionIcon variant="default" size={18} ml={-3}>
@@ -105,9 +109,12 @@ export function Navbar() {
                     <div className={classes.collections}>{collectionLinks}</div>
                 </div>
                 <ThemeToggle />
-                <ActionIcon variant="default" size={20} mt={10} ml={-3} onClick={() => setCollapsed(!collapsed)}>
-                    <CollapsedIcon style={{ width: rem(15), height: rem(15) }} stroke={1.5} />
-                </ActionIcon>
+                <Flex justify="space-between" align="end">
+                    <ActionIcon variant="default" size={20} mt={10} ml={-3} onClick={() => setCollapsed(!collapsed)}>
+                        <CollapsedIcon style={{ width: rem(15), height: rem(15) }} stroke={1.5} />
+                    </ActionIcon>
+                    {!collapsed && <Code>v3.1.2</Code>}
+                </Flex>
             </nav>
             {/* <Spotlight shortcut="mod + J" actions={[]} /> */}
         </>

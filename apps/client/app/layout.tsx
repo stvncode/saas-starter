@@ -5,6 +5,7 @@ import { GeistMono } from 'geist/font/mono'
 import { Header } from '../components/Header'
 import { Navbar } from '../components/Navbar'
 import { HEADER_HEIGHT } from '../core/constant'
+import Providers from '../core/providers'
 import { theme } from '../theme'
 import { ChildrenProps } from '../types'
 
@@ -16,7 +17,7 @@ export const metadata = {
     title: 'Saas Starter',
 }
 
-export default function RootLayout({ children }: ChildrenProps) {
+export default function Layout({ children }: ChildrenProps) {
     return (
         <html lang="en" className={GeistMono.className}>
             <head>
@@ -26,18 +27,20 @@ export default function RootLayout({ children }: ChildrenProps) {
                     content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
                 />
             </head>
-            <body>
+            <body suppressHydrationWarning>
                 <ColorSchemeScript />
                 <MantineProvider theme={theme}>
-                    <Flex direction="column">
-                        <Header />
-                        <Flex>
-                            <Navbar />
-                            <div style={{ width: '100%', height: `calc(100vh - ${HEADER_HEIGHT})` }}>
-                                {children}
-                            </div>
+                    <Providers>
+                        <Flex direction="column">
+                            <Header />
+                            <Flex>
+                                <Navbar />
+                                <div style={{ width: '100%', height: `calc(100vh - ${HEADER_HEIGHT})` }}>
+                                    {children}
+                                </div>
+                            </Flex>
                         </Flex>
-                    </Flex>
+                    </Providers>
                 </MantineProvider>
             </body>
         </html>

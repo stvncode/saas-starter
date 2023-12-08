@@ -1,4 +1,5 @@
 import { cookie } from '@elysiajs/cookie'
+import cors from '@elysiajs/cors'
 import { jwt } from '@elysiajs/jwt'
 import { swagger } from '@elysiajs/swagger'
 import Elysia from 'elysia'
@@ -14,6 +15,7 @@ const app = new Elysia()
           secret: Bun.env.JWT_SECRET!,
         }),
       )
+      .use(cors())
       .use(cookie())
       .use(auth),
   )

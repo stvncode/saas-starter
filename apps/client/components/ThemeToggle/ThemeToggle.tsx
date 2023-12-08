@@ -1,7 +1,7 @@
 'use client'
 
 import { ActionIcon, useMantineColorScheme } from '@mantine/core'
-import { MoonIcon, SunIcon } from '@modulz/radix-icons'
+import { IconMoon, IconSun } from '@tabler/icons-react'
 
 export function ThemeToggle() {
     const { setColorScheme, colorScheme } = useMantineColorScheme()
@@ -19,9 +19,9 @@ export function ThemeToggle() {
     >
         {
             dark ? (
-                <SunIcon style={{ width: 12, height: 12 }} />
+                <IconMoon style={{ width: 12, height: 12 }} />
             ) : (
-                <MoonIcon style={{ width: 12, height: 12 }} />
+                <IconSun style={{ width: 12, height: 12 }} />
             )
         }
     </ActionIcon >

@@ -5,19 +5,17 @@ import {
     Flex,
     Menu,
     Text,
-    rem,
-    useMantineTheme
+    rem
 } from '@mantine/core'
 import {
-    IconHeart,
+    IconApiApp,
     IconLogout,
-    IconMessage,
     IconPlayerPause,
     IconSettings,
-    IconStar,
     IconSwitchHorizontal,
     IconTrash
 } from '@tabler/icons-react'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import classes from './Header.module.css'
 
@@ -27,24 +25,17 @@ const user = {
     image: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png',
 }
 
-const tabs = [
-    'Home',
-    'Orders',
-    'Education',
-    'Community',
-    'Forums',
-    'Support',
-    'Account',
-    'Helpdesk',
-]
-
 export function Header() {
-    const theme = useMantineTheme()
     const [userMenuOpened, setUserMenuOpened] = useState(false)
+
+    const router = useRouter()
 
     return (
         <Flex align="center" justify="space-between" className={classes.header}>
-            <Text fw={500}>Saas Template</Text>
+            <Flex gap={10} align="center">
+                <IconApiApp />
+                <Text fw={500}>Saas Template</Text>
+            </Flex>
             <Menu
                 width={260}
                 position="bottom-end"
@@ -57,40 +48,6 @@ export function Header() {
                     <Avatar src={user.image} alt={user.name} radius="xl" size={33} />
                 </Menu.Target>
                 <Menu.Dropdown>
-                    <Menu.Item
-                        leftSection={
-                            <IconHeart
-                                style={{ width: rem(16), height: rem(16) }}
-                                color={theme.colors.red[6]}
-                                stroke={1.5}
-                            />
-                        }
-                    >
-                        Liked posts
-                    </Menu.Item>
-                    <Menu.Item
-                        leftSection={
-                            <IconStar
-                                style={{ width: rem(16), height: rem(16) }}
-                                color={theme.colors.yellow[6]}
-                                stroke={1.5}
-                            />
-                        }
-                    >
-                        Saved posts
-                    </Menu.Item>
-                    <Menu.Item
-                        leftSection={
-                            <IconMessage
-                                style={{ width: rem(16), height: rem(16) }}
-                                color={theme.colors.blue[6]}
-                                stroke={1.5}
-                            />
-                        }
-                    >
-                        Your comments
-                    </Menu.Item>
-
                     <Menu.Label>Settings</Menu.Label>
                     <Menu.Item
                         leftSection={
@@ -103,6 +60,7 @@ export function Header() {
                         leftSection={
                             <IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
                         }
+                        onClick={() => router.push('/auth')}
                     >
                         Change account
                     </Menu.Item>

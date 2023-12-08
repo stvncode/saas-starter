@@ -1,3 +1,13 @@
+import { useQuery } from '@tanstack/react-query'
 import { app } from '../client'
 
-const appd3e = app.auth.me.get()
+export const getUser = app.auth.me.get
+
+export const useGetUser = () =>
+  useQuery({
+    queryKey: [{}],
+    queryFn: async () => {
+      const response = await getUser()
+      return response.data
+    },
+  })
